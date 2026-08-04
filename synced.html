@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>SYNCED — ITSO Election</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Mono:wght@400;700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- INTRO / SPLASH SCREEN -->
+  <div class="intro-screen" id="introScreen">
+    <div class="intro-grid" aria-hidden="true"></div>
+    <div class="folder-wrap" id="folderWrap" tabindex="0" role="button" aria-label="Enter the SYNCED site">
+      <div class="doc-sheet sheet-1"></div>
+      <div class="doc-sheet sheet-2"></div>
+      <div class="doc-sheet sheet-3"></div>
+      <div class="folder-card">
+        <svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+          <path d="M4 6.5a1.5 1.5 0 0 1 1.5-1.5h4l2 2h7A1.5 1.5 0 0 1 20 8.5v9A1.5 1.5 0 0 1 18.5 19h-13A1.5 1.5 0 0 1 4 17.5v-11Z" stroke-linejoin="round"/>
+        </svg>
+        <h2 class="folder-title">SYNCED</h2>
+      </div>
+    </div>
+    <p class="intro-hint">Tap the folder to enter</p>
+  </div>
+
+  <div class="progress-rail"><div class="progress-fill" id="progressFill"></div></div>
+
+  <nav class="site-nav" id="siteNav" aria-label="Site navigation">
+    <button class="site-nav__fab" id="siteNavFab" type="button" aria-expanded="false" aria-controls="siteNavPanel" aria-label="Open navigation">
+      <svg class="site-nav__fab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+        <circle cx="12" cy="5" r="1.5"></circle>
+        <circle cx="12" cy="12" r="1.5"></circle>
+        <circle cx="12" cy="19" r="1.5"></circle>
+      </svg>
+      <svg class="site-nav__fab-icon site-nav__fab-icon--close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+        <path d="M6 6l12 12M18 6L6 18"></path>
+      </svg>
+    </button>
+
+    <div class="site-nav__panel" id="siteNavPanel">
+      <div class="site-nav__categories" id="siteNavCategories">
+        <button class="site-nav__category" type="button" data-category="candidates">
+          <span>Candidates</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 18l6-6-6-6"></path></svg>
+        </button>
+        <button class="site-nav__category" type="button" data-category="platforms">
+          <span>Platforms</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 18l6-6-6-6"></path></svg>
+        </button>
+        <button class="site-nav__category" type="button" data-category="projects">
+          <span>Projects</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 18l6-6-6-6"></path></svg>
+        </button>
+      </div>
+
+      <div class="site-nav__items" id="siteNavItems">
+        <button class="site-nav__back" id="siteNavBack" type="button" aria-label="Back to categories">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg>
+          Back
+        </button>
+        <div class="site-nav__sublist" data-category="candidates" id="siteNavCandidates"></div>
+        <div class="site-nav__sublist" data-category="platforms" id="siteNavPlatforms"></div>
+        <div class="site-nav__sublist" data-category="projects" id="siteNavProjects"></div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <svg class="hero__ballot" viewBox="0 0 400 400" aria-hidden="true">
+      <circle cx="200" cy="200" r="170" class="ballot-ring"></circle>
+      <circle id="heroFill" cx="200" cy="200" r="170" class="ballot-fill"></circle>
+      <image href="images/synced-logo.png" x="0" y="0" width="400" height="400"
+        class="ballot-check" id="heroCheck"></image>
+    </svg>
+
+    <div class="hero__content">
+      <p class="eyebrow">College of Computer Studies &nbsp;·&nbsp; ITSO Elections, S.Y. 2026–2027</p>
+      <h1 class="hero__title">SYNCED</h1>
+      <p class="hero__tagline">"When ideas align, Success is defined"</p>
+      <a href="#ticket" class="btn btn--ghost">Meet the Framework ↓</a>
+    </div>
+
+    <div class="hero__ballotnum">
+      <span>OFFICIAL PARTY LIST</span>
+      <strong>NO. 03</strong>
+    </div>
+  </header>
+
+  <main>
+
+
+    <!-- PLATFORM PILLARS -->
+    <section class="pillars">
+      <h2 class="section-title">THE DEVELOPMENT CYCLE</h2>
+      <h3 class="section-sub">SYNCED's CCS Upgrade Plan.</h3>
+      <div class="pillars__grid">
+        <article class="pillar">
+          <span class="pillar__op">01_</span>
+          <h3>REFACTOR</h3>
+          <p>Streamlining student services, clearances, and requirements so nothing takes longer than it should.</p>
+        </article>
+        <article class="pillar">
+          <span class="pillar__op">02_</span>
+          <h3>DEPLOY</h3>
+          <p>Rolling out programs, org events, and academic resources that actually reach every year level.</p>
+        </article>
+        <article class="pillar">
+          <span class="pillar__op">03_</span>
+          <h3>DEBUG</h3>
+          <p>Listening first, then acting — a council that traces every complaint back to a real fix.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- CANDIDATES -->
+    <section class="ticket" id="ticket">
+      <div class="ticket__aurora" aria-hidden="true">
+        <div class="aurora-shape-1"></div>
+        <div class="aurora-shape-2"></div>
+      </div>
+      <div class="ticket__inner">
+        <h2 class="section-title">THE FRAMEWORK</h2>
+        <p class="section-sub">Meet the people who will turn SYNCED's vision into action.</p>
+        <div class="candidates" id="candidatesContainer"></div>
+      </div>
+    </section>
+
+    <!-- PLATFORMS -->
+    <section class="platforms" id="platforms">
+      <div class="platforms__inner">
+        <h2 class="section-title">Platforms</h2>
+        <p class="section-sub">What SYNCED stands on. Scroll through each one.</p>
+        <div class="platform-list" id="platformsContainer"></div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section class="projects" id="projects">
+      <div class="projects__inner">
+        <h2 class="section-title">Roadmap</h2>
+        <p class="section-sub">A clear plan of projects designed to elevate the CCS student experience.</p>
+        <div class="project-list" id="projectsContainer"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER / CTA -->
+  <footer class="footer">
+    <div class="footer__seal">SYNCED &nbsp;/&nbsp; No. 03</div>
+    <h2 class="footer__cta">Shade the circle.<br>Vote Straight, stay SYNCED.</h2><br><br><br><br><br><br><br><br>
+    <div class="footer__meta">
+      <span>College of Computer Studies</span>
+      <span>Information Technology Student Organization</span>
+      <span>S.Y. 2026–2027</span>
+    </div>
+  </footer>
+
+  <!-- CANDIDATE DETAIL MODAL -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalName">
+      <button class="modal__close" id="modalClose" aria-label="Close candidate details">✕</button>
+      <div class="modal__details" id="modalDetails"></div>
+      <div class="modal__photo" id="modalPhoto"></div>
+    </div>
+  </div>
+
+  <!-- PLATFORM PHOTO MODAL (zoom + flip) -->
+  <div class="photo-modal-overlay" id="photoModalOverlay">
+    <div class="photo-modal">
+      <button class="photo-modal__close" id="photoModalClose" aria-label="Close photo">X</button>
+      <div class="photo-modal__card" id="photoModalCard">
+        <div class="photo-modal__face photo-modal__face--front">
+          <img id="photoModalFrontImg" src="" alt="">
+        </div>
+        <div class="photo-modal__face photo-modal__face--back">
+          <img id="photoModalBackImg" src="" alt="">
+        </div>
+      </div>
+      <button class="photo-modal__flip" id="photoModalFlip" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M17.65 6.35A8 8 0 1 0 19 13" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M17 3v4h4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

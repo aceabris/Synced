@@ -86,17 +86,6 @@ using your preferred browser.
 
 This project was developed as a campaign website for the **SYNCED Partylist** to communicate its vision, introduce its candidates, and present proposed initiatives for the College of Computer Studies.
 
-
-
-## 📈 Future Improvements
-
-* Accessibility enhancements
-* Performance optimization
-* Additional animations
-* Candidate filtering
-* CMS integration
-* Analytics dashboard
-
 ---
 
 ## 👨‍💻 Developer

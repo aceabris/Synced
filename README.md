@@ -1,4 +1,4 @@
-# 💙 SYNCED — ITSO Election Campaign Website
+# SYNCED — ITSO Election Campaign Website
 
 A modern, interactive campaign website developed for the **SYNCED Partylist** during the **Information Technology Student Organization (ITSO) Elections S.Y. 2026–2027**.
 

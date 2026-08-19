@@ -55,10 +55,10 @@ const PLATFORMS = [
     num: 1,
     title: "Digital Innovation",
     items: [
-      { text: "ITSO IDs", image: "images/itso-id-front.png", imageBack: "images/itso-id-back.png" },
       { text: "Digital Student Services Platform - DSSP System Development and Implementation" },
       { text: "Online Elections" },
       { text: "GCash Payment Integration for fines" },
+      { text: "ITSO IDs", image: "images/itso-id-front.png", imageBack: "images/itso-id-back.png" },
     ],
   },
   {

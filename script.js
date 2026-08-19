@@ -7,41 +7,46 @@
    the path to wherever you're keeping them).
    ============================================ */
 const CANDIDATES = [
-  { num: 1,  position: "President",              name: "JOHN ALBERT ABRIS",      photo: "images/01-john-albert-abris.png",
-    platform: "Building one transparent, student-centered CCS organization where every voice contributes to every decision.",
-    focus: ["Consolidating CCS organization processes into one transparent, student-run system.", "Publishing organizational updates and accomplishments to keep every CCS student informed."] },
-  { num: 2,  position: "Vice President",          name: "NATHALIE DELADIA",       photo: "images/02-nathalie-deladia.png",
-    platform: "Ensuring every project is organized, collaborative, and completed efficiently.",
-    focus: ["Coordinating committees to keep projects on schedule and accountable.", "Monitoring the implementation of approved programs and organizational goals."] },
-  { num: 3,  position: "Secretary",                name: "JENIFER BEA BAGANIA",          photo: "images/03-jenifaer-bagania.png",
-    platform: "Making communication clear, organized, and accessible to every CCS student.",
-    focus: ["Digitizing meeting minutes, resolutions, and official announcements in one central portal.", "Publishing timely documentation and organizational updates for transparency."] },
-  { num: 4,  position: "Treasurer",                name: "LIXCEL GLEEN TURPIS",    photo: "images/04-lixcel-gleen-turpis.png",
-    platform: "Managing organization funds with integrity, transparency, and accountability.",
-    focus: ["Maintaining transparent and accountable financial management through clear and timely fund reports.", "Managing resources responsibly to maximize the impact of every organizational project."] },
-  { num: 5,  position: "Auditor",                  name: "JHUNCEL NUEVO",          photo: "images/05-jhuncel-nuevo.png",
-    platform: "Promoting accountability by ensuring every project and transaction is properly documented.",
-    focus: ["Conducting regular audits of financial records and organizational activities.", "Publishing audit summaries and recommendations to strengthen transparency."] },
-  { num: 6,  position: "Business Manager",         name: "LUCIOUS QUIMINALES",     photo: "images/06-lucious-quiminales.png",
-    platform: "Creating sustainable partnerships and responsible fundraising for the organization.",
-    focus: ["Developing sponsorships and fundraising initiatives that benefit CCS students.", "Tracking project budgets and resource utilization to maximize every contribution."] },
-  { num: 7,  position: "Muse",                     name: "CLAIRE ANTHONYT GALACAN",          photo: "images/07-claire-galacan.png",
-    platform: "Promoting school spirit, creativity, and student engagement beyond competitions.",
-    focus: ["Leading initiatives that celebrate CCS talent, diversity, and creativity.", "Representing the organization with professionalism and inclusivity at school events."] },
-  { num: 8,  position: "Escort",                   name: "JOHN MARK BOLANOS",      photo: "images/08-john-mark-bolanos.png",
-    platform: "Representing CCS with confidence, leadership, and professionalism.",
-    focus: ["Promoting student involvement in organizational activities and campus events.", "Serving as a welcoming ambassador for CCS programs and official functions."] },
-  /*{ num: 9,  position: "1st Year Rep",  name: "ANGEL TABULAO",           photo: "images/09-angel-tabulao.png",
-    platform: "Helping first-year students transition confidently into the CCS community.", 
-    focus: ["Establishing a support and feedback channel dedicated to freshmen.", "Organizing orientation and peer-mentoring activities for new students."] },*/
-  { num: 9, position: "2nd Year Rep",  name: "JYCEL LAROZA",           photo: "images/10-jycel-laroza.png",
-    platform: "Strengthening collaboration and engagement among sophomore students.",
-    focus: ["Gathering and presenting student concerns through regular consultations.", "Organizing academic and social activities that encourage participation."] },
-  { num: 10, position: "3rd Year Rep",  name: "JOHN MICHAEL LAGRAMADA", photo: "images/11-john-michael-lagramada.png",
+  { num: 1, position: "3rd Year Rep",             name: "JOHN MICHAEL LAGRAMADA",  photo: "images/11-john-michael-lagramada.png",
     platform: "Preparing students for leadership, internships, and future career opportunities.",
     focus: ["Coordinating career preparation activities, seminars, and industry engagements.", "Advocating for programs that support internships, portfolios, and professional development."] },
-];
 
+  { num: 2, position: "2nd Year Rep",             name: "JYCEL LAROZA",             photo: "images/10-jycel-laroza.png",
+    platform: "Strengthening collaboration and engagement among sophomore students.",
+    focus: ["Gathering and presenting student concerns through regular consultations.", "Organizing academic and social activities that encourage participation."] },
+
+  { num: 3, position: "Escort",                   name: "JOHN MARK BOLANOS",        photo: "images/08-john-mark-bolanos.png",
+    platform: "Representing CCS with confidence, leadership, and professionalism.",
+    focus: ["Promoting student involvement in organizational activities and campus events.", "Serving as a welcoming ambassador for CCS programs and official functions."] },
+
+  { num: 4, position: "Muse",                     name: "CLAIRE ANTHONYT GALACAN", photo: "images/07-claire-galacan.png",
+    platform: "Promoting school spirit, creativity, and student engagement beyond competitions.",
+    focus: ["Leading initiatives that celebrate CCS talent, diversity, and creativity.", "Representing the organization with professionalism and inclusivity at school events."] },
+
+  { num: 5, position: "Business Manager",         name: "LUCIOUS QUIMINALES",      photo: "images/06-lucious-quiminales.png",
+    platform: "Creating sustainable partnerships and responsible fundraising for the organization.",
+    focus: ["Developing sponsorships and fundraising initiatives that benefit CCS students.", "Tracking project budgets and resource utilization to maximize every contribution."] },
+
+  { num: 6, position: "Auditor",                  name: "JHUNCEL NUEVO",            photo: "images/05-jhuncel-nuevo.png",
+    platform: "Promoting accountability by ensuring every project and transaction is properly documented.",
+    focus: ["Conducting regular audits of financial records and organizational activities.", "Publishing audit summaries and recommendations to strengthen transparency."] },
+
+  { num: 7, position: "Treasurer",                name: "LIXCEL GLEEN TURPIS",      photo: "images/04-lixcel-gleen-turpis.png",
+    platform: "Managing organization funds with integrity, transparency, and accountability.",
+    focus: ["Maintaining transparent and accountable financial management through clear and timely fund reports.", "Managing resources responsibly to maximize the impact of every organizational project."] },
+
+  { num: 8, position: "Secretary",                name: "JENIFER BEA BAGANIA",     photo: "images/03-jenifaer-bagania.png",
+    platform: "Making communication clear, organized, and accessible to every CCS student.",
+    focus: ["Digitizing meeting minutes, resolutions, and official announcements in one central portal.", "Publishing timely documentation and organizational updates for transparency."] },
+
+  { num: 9, position: "Vice President",          name: "NATHALIE DELADIA",         photo: "images/02-nathalie-deladia.png",
+    platform: "Ensuring every project is organized, collaborative, and completed efficiently.",
+    focus: ["Coordinating committees to keep projects on schedule and accountable.", "Monitoring the implementation of approved programs and organizational goals."] },
+
+  { num: 10, position: "President",              name: "JOHN ALBERT ABRIS",         photo: "images/01-john-albert-abris.png",
+    platform: "Building one transparent, student-centered CCS organization where every voice contributes to every decision.",
+    focus: ["Consolidating CCS organization processes into one transparent, student-run system.", "Publishing organizational updates and accomplishments to keep every CCS student informed."] },
+];
 /* ============================================
    PLATFORMS DATA
    Each platform is its own full-screen section.

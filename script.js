@@ -31,13 +31,13 @@ const CANDIDATES = [
   { num: 8,  position: "Escort",                   name: "JOHN MARK BOLANOS",      photo: "images/08-john-mark-bolanos.png",
     platform: "Representing CCS with confidence, leadership, and professionalism.",
     focus: ["Promoting student involvement in organizational activities and campus events.", "Serving as a welcoming ambassador for CCS programs and official functions."] },
-  { num: 9,  position: "1st Year Rep",  name: "ANGEL TABULAO",           photo: "images/09-angel-tabulao.png",
-    platform: "Helping first-year students transition confidently into the CCS community.",
-    focus: ["Establishing a support and feedback channel dedicated to freshmen.", "Organizing orientation and peer-mentoring activities for new students."] },
-  { num: 10, position: "2nd Year Rep",  name: "JYCEL LAROZA",           photo: "images/10-jycel-laroza.png",
+  /*{ num: 9,  position: "1st Year Rep",  name: "ANGEL TABULAO",           photo: "images/09-angel-tabulao.png",
+    platform: "Helping first-year students transition confidently into the CCS community.", 
+    focus: ["Establishing a support and feedback channel dedicated to freshmen.", "Organizing orientation and peer-mentoring activities for new students."] },*/
+  { num: 9, position: "2nd Year Rep",  name: "JYCEL LAROZA",           photo: "images/10-jycel-laroza.png",
     platform: "Strengthening collaboration and engagement among sophomore students.",
     focus: ["Gathering and presenting student concerns through regular consultations.", "Organizing academic and social activities that encourage participation."] },
-  { num: 11, position: "3rd Year Rep",  name: "JOHN MICHAEL LAGRAMADA", photo: "images/11-john-michael-lagramada.png",
+  { num: 10, position: "3rd Year Rep",  name: "JOHN MICHAEL LAGRAMADA", photo: "images/11-john-michael-lagramada.png",
     platform: "Preparing students for leadership, internships, and future career opportunities.",
     focus: ["Coordinating career preparation activities, seminars, and industry engagements.", "Advocating for programs that support internships, portfolios, and professional development."] },
 ];

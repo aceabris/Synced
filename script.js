@@ -55,10 +55,10 @@ const PLATFORMS = [
     num: 1,
     title: "Digital Innovation",
     items: [
-      { text: "ITSO SIS Development and Implementation", image: "images/itso-id-front.png", imageBack: "images/itso-id-back.png" },
-      { text: "Digital Student Services" },
+      { text: "ITSO IDs", image: "images/itso-id-front.png", imageBack: "images/itso-id-back.png" },
+      { text: "Digital Student Services Platform - DSSP System Development and Implementation" },
       { text: "Online Elections" },
-      { text: "GCash Payment Integration" },
+      { text: "GCash Payment Integration for fines" },
     ],
   },
   {
@@ -67,8 +67,7 @@ const PLATFORMS = [
     items: [
       { text: "Collaborated Tech Talks with Dev8", image: "images/dev8.png", imageBack: "images/dev8-back.png" }, 
       { text: "Programming Tutorials" },
-      { text: "Learning Resources" },
-      
+      { text: "Resource Archives" },
       { text: "Tutoring" },
       
     ],

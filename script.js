@@ -43,9 +43,18 @@ const CANDIDATES = [
     platform: "Ensuring every project is organized, collaborative, and completed efficiently.",
     focus: ["Coordinating committees to keep projects on schedule and accountable.", "Monitoring the implementation of approved programs and organizational goals."] },
 
-  { num: 10, position: "President",              name: "JOHN ALBERT ABRIS",         photo: "images/01-john-albert-abris.png",
-    platform: "Building one transparent, student-centered CCS organization where every voice contributes to every decision.",
-    focus: ["Consolidating CCS organization processes into one transparent, student-run system.", "Publishing organizational updates and accomplishments to keep every CCS student informed."] },
+  { 
+  num: 10, 
+  position: "President",
+  name: "JOHN ALBERT ABRIS",
+  link: "https://aceabris.github.io/portfolio/ace.html",
+  photo: "images/01-john-albert-abris.png",
+  platform: "Building one transparent, student-centered CCS organization where every voice contributes to every decision.",
+  focus: [
+    "Consolidating CCS organization processes into one transparent, student-run system.",
+    "Publishing organizational updates and accomplishments to keep every CCS student informed."
+  ]
+},
 ];
 /* ============================================
    PLATFORMS DATA
@@ -128,7 +137,11 @@ function renderCandidates(){
         <div class="candidate-view__photo">${photoTag(c)}</div>
         <div class="candidate-view__info">
           <p class="candidate-view__position">${c.position}</p>
-          <h2>${c.name}</h2>
+          <h2>
+  ${c.link
+    ? `<a href="${c.link}" target="_blank" rel="noopener noreferrer">${c.name}</a>`
+    : c.name}
+</h2>
           <p class="candidate-view__platform">${c.platform}</p>
           <ul class="candidate-view__focus">
             ${c.focus.map(f => `<li>${f}</li>`).join("")}

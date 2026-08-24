@@ -69,6 +69,7 @@ const PLATFORMS = [
     num: 1,
     title: "Digital Innovation",
     items: [
+      { text: "College of Computer Studies - Hosting Domain" },
       { text: "Digital Student Services Platform - DSSP System Development and Implementation" },
       { text: "Online Elections" },
       { text: "GCash Payment Integration for fines" },

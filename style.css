@@ -54,13 +54,13 @@ a{ color:inherit; text-decoration:none; }
   gap:2.6rem;
   background:linear-gradient(to bottom, #241246, var(--violet-deep));
   overflow:hidden;
-  transition:opacity .6s ease, visibility 0s linear 0s;
+  clip-path:circle(150% at 50% 50%);
+  transition:clip-path .9s cubic-bezier(.65,0,.35,1), box-shadow .9s ease;
 }
 .intro-screen.closing{
-  opacity:0;
-  visibility:hidden;
+  clip-path:circle(0% at 50% 50%);
+  box-shadow:inset 0 0 0 100vmax rgba(180,142,232,0.35);
   pointer-events:none;
-  transition:opacity .6s ease, visibility 0s linear .6s;
 }
 
 .intro-grid{
@@ -190,8 +190,110 @@ a{ color:inherit; text-decoration:none; }
   text-transform:uppercase;
   color:rgba(212,184,255,0.6);
   animation:hintPulse 2s ease-in-out infinite;
+  transition:opacity .3s ease;
 }
 @keyframes hintPulse{ 0%,100%{ opacity:0.35; } 50%{ opacity:0.9; } }
+.intro-hint.collapsing{ opacity:0; animation:none; }
+
+/* Folder collapses into a point of light right as it's tapped,
+   handing off to the portal burst underneath it. */
+.folder-wrap.collapsing{
+  animation:folderCollapse .45s cubic-bezier(.4,0,.2,1) forwards;
+  pointer-events:none;
+}
+@keyframes folderCollapse{
+  0%{ transform:rotateY(5deg) rotateX(3deg) scale(1); opacity:1; filter:brightness(1) saturate(1); }
+  55%{ transform:scale(1.08); opacity:1; filter:brightness(1.7) saturate(1.4); }
+  100%{ transform:scale(0.04); opacity:0; filter:brightness(2.6) saturate(1.8); }
+}
+
+/* ============================================
+   PORTAL BURST
+   Concentric rings + a core flash + radiating
+   streaks, all in the site's purple/berry/blue
+   accent hues — fires once, then hands off to
+   the iris-close reveal of the landing page.
+   ============================================ */
+.portal-burst{
+  position:absolute;
+  inset:0;
+  z-index:2;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  pointer-events:none;
+  opacity:0;
+}
+.portal-burst.burst{ opacity:1; }
+
+.portal-core{
+  position:absolute;
+  width:14px; height:14px;
+  border-radius:50%;
+  background:radial-gradient(circle, #fff 0%, var(--lavender-bright) 35%, var(--berry) 70%, transparent 100%);
+  box-shadow:0 0 20px 6px var(--lavender-bright), 0 0 44px 16px var(--berry);
+  opacity:0;
+  transform:scale(0);
+}
+.portal-burst.burst .portal-core{
+  animation:portalCoreBurst .75s cubic-bezier(.2,.7,.3,1) forwards;
+}
+@keyframes portalCoreBurst{
+  0%{ opacity:0; transform:scale(0); }
+  30%{ opacity:1; transform:scale(1); }
+  100%{ opacity:0; transform:scale(3.4); }
+}
+
+.portal-ring{
+  position:absolute;
+  width:60px; height:60px;
+  border-radius:50%;
+  border:2px solid transparent;
+  opacity:0;
+  transform:scale(0.2);
+}
+.ring-1{ border-color:var(--lavender-bright); box-shadow:0 0 18px var(--lavender-bright), inset 0 0 18px var(--lavender-bright); }
+.ring-2{ border-color:#E88EC8; box-shadow:0 0 18px #E88EC8, inset 0 0 18px #E88EC8; }
+.ring-3{ border-color:#8EC8E8; box-shadow:0 0 18px #8EC8E8, inset 0 0 18px #8EC8E8; }
+.portal-burst.burst .ring-1{ animation:portalRingBurst .8s .05s cubic-bezier(.2,.7,.3,1) forwards; }
+.portal-burst.burst .ring-2{ animation:portalRingBurst .8s .15s cubic-bezier(.2,.7,.3,1) forwards; }
+.portal-burst.burst .ring-3{ animation:portalRingBurst .8s .25s cubic-bezier(.2,.7,.3,1) forwards; }
+@keyframes portalRingBurst{
+  0%{ opacity:0; transform:scale(0.2); }
+  18%{ opacity:1; }
+  100%{ opacity:0; transform:scale(9); }
+}
+
+.portal-rays{
+  position:absolute;
+  width:520px; height:520px;
+  border-radius:50%;
+  background:conic-gradient(from 0deg,
+    transparent 0deg, rgba(180,142,232,0.55) 8deg, transparent 20deg,
+    transparent 60deg, rgba(232,142,200,0.5) 68deg, transparent 80deg,
+    transparent 130deg, rgba(142,200,232,0.45) 138deg, transparent 150deg,
+    transparent 200deg, rgba(180,142,232,0.55) 208deg, transparent 220deg,
+    transparent 270deg, rgba(232,142,200,0.45) 278deg, transparent 290deg,
+    transparent 340deg, rgba(142,200,232,0.45) 348deg, transparent 360deg);
+  opacity:0;
+  transform:scale(0.3) rotate(0deg);
+  filter:blur(1px);
+}
+.portal-burst.burst .portal-rays{
+  animation:portalRaysBurst .85s .05s ease-out forwards;
+}
+@keyframes portalRaysBurst{
+  0%{ opacity:0; transform:scale(0.3) rotate(0deg); }
+  22%{ opacity:0.9; }
+  100%{ opacity:0; transform:scale(2.7) rotate(140deg); }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .folder-wrap.collapsing{ animation:none; opacity:0; transition:opacity .3s ease; }
+  .portal-burst.burst *{ animation:none !important; }
+  .portal-burst.burst{ opacity:0; }
+  .intro-screen{ transition:clip-path .4s ease; }
+}
 
 @media (max-width:480px){
   .folder-wrap{ width:200px; height:230px; }
@@ -521,10 +623,13 @@ a{ color:inherit; text-decoration:none; }
   border-top:3px solid var(--violet);
   padding-top:1.4rem;
   opacity:0;
-  transform:translateY(24px);
-  transition:opacity .7s ease, transform .7s ease;
+  transform:translateY(28px);
+  transition:opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1);
 }
 .pillar.in-view{ opacity:1; transform:translateY(0); }
+.pillars__grid .pillar:nth-child(1){ transition-delay:0s; }
+.pillars__grid .pillar:nth-child(2){ transition-delay:.15s; }
+.pillars__grid .pillar:nth-child(3){ transition-delay:.3s; }
 
 .pillar__op{
   font-family:var(--mono);
@@ -599,11 +704,7 @@ a{ color:inherit; text-decoration:none; }
   align-items:center;
   padding:7rem 0;
   border-bottom:1px solid rgba(180,142,232,0.12);
-  opacity:0;
-  transform:translateY(40px);
-  transition:opacity .7s ease, transform .7s cubic-bezier(.16,1,.3,1);
 }
-.candidate-view.in-view{ opacity:1; transform:translateY(0); }
 .candidate-view:last-child{ border-bottom:none; }
 
 .candidate-view__inner{
@@ -613,6 +714,40 @@ a{ color:inherit; text-decoration:none; }
   align-items:center;
   gap:clamp(2.5rem, 6vw, 5rem);
 }
+
+/* Photo slides in from one side, info from the other — direction
+   alternates per candidate so the section doesn't feel like it's
+   repeating the same move every time. Both stay hidden/offset until
+   the section earns its .in-view class from the scroll observer. */
+.candidate-view__photo,
+.candidate-view__info{
+  opacity:0;
+  transition:opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1);
+}
+.candidate-view__photo{ transform:translateX(-70px) scale(0.94); transition-delay:.05s; }
+.candidate-view__info{ transform:translateX(70px); transition-delay:.16s; }
+.candidate-view:nth-of-type(even) .candidate-view__photo{ transform:translateX(70px) scale(0.94); }
+.candidate-view:nth-of-type(even) .candidate-view__info{ transform:translateX(-70px); }
+
+.candidate-view.in-view .candidate-view__photo,
+.candidate-view.in-view .candidate-view__info{
+  opacity:1;
+  transform:translateX(0) scale(1);
+}
+
+/* Focus-list bullets step in one after another once the info
+   panel starts sliding in, instead of popping in all at once. */
+.candidate-view__focus li{
+  opacity:0;
+  transform:translateY(14px);
+  transition:opacity .55s ease, transform .55s cubic-bezier(.16,1,.3,1);
+}
+.candidate-view.in-view .candidate-view__focus li{ opacity:1; transform:translateY(0); }
+.candidate-view__focus li:nth-child(1){ transition-delay:.3s; }
+.candidate-view__focus li:nth-child(2){ transition-delay:.38s; }
+.candidate-view__focus li:nth-child(3){ transition-delay:.46s; }
+.candidate-view__focus li:nth-child(4){ transition-delay:.54s; }
+.candidate-view__focus li:nth-child(n+5){ transition-delay:.6s; }
 
 .candidate-view__photo{
   display:flex;
@@ -627,6 +762,28 @@ a{ color:inherit; text-decoration:none; }
   font-family:var(--display);
   font-size:3rem;
   color:var(--lavender-bright);
+  border-radius:14px;
+  background:linear-gradient(100deg, rgba(180,142,232,0.07) 30%, rgba(180,142,232,0.24) 50%, rgba(180,142,232,0.07) 70%);
+  background-size:220% 100%;
+  animation:photoShimmer 1.6s ease-in-out infinite;
+  opacity:0;
+  transform:scale(0.96);
+  filter:blur(6px);
+  transition:opacity .5s ease, transform .5s ease, filter .5s ease;
+}
+.candidate-view__photo img.loaded{
+  opacity:1;
+  transform:scale(1);
+  filter:blur(0);
+  animation:none;
+  background:none;
+}
+@keyframes photoShimmer{
+  0%{ background-position:220% 0; }
+  100%{ background-position:-220% 0; }
+}
+@media (prefers-reduced-motion: reduce){
+  .candidate-view__photo img{ animation:none; filter:none; }
 }
 
 .candidate-view__badge{
@@ -683,6 +840,56 @@ a{ color:inherit; text-decoration:none; }
   background:var(--lavender);
 }
 
+.share-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:0.5rem;
+  font-family:var(--mono);
+  font-size:0.72rem;
+  letter-spacing:0.06em;
+  text-transform:uppercase;
+  color:var(--lavender-bright);
+  background:rgba(180,142,232,0.08);
+  border:1px solid rgba(180,142,232,0.4);
+  border-radius:100px;
+  padding:0.55rem 1.1rem;
+  cursor:pointer;
+  transition:background .2s ease, border-color .2s ease, color .2s ease, transform .2s ease;
+  -webkit-tap-highlight-color:transparent;
+}
+.share-btn:hover, .share-btn:focus-visible{
+  background:var(--lavender);
+  color:var(--violet-deep);
+  border-color:var(--lavender);
+  transform:translateY(-1px);
+}
+.share-btn__icon{ width:15px; height:15px; flex:0 0 auto; }
+.share-btn--done{
+  background:var(--lavender);
+  color:var(--violet-deep);
+  border-color:var(--lavender);
+}
+
+/* Footer's "Share this page" button sits on the light --paper
+   background, so it needs darker text/border than a version on
+   a dark background would. */
+.share-btn--page{
+  color:var(--violet-deep);
+  background:rgba(180,142,232,0.14);
+  border-color:var(--violet-soft);
+  margin-bottom:1.5rem;
+}
+.share-btn--page:hover, .share-btn--page:focus-visible{
+  background:var(--lavender);
+  color:var(--violet-deep);
+  border-color:var(--lavender);
+}
+.share-btn--page.share-btn--done{
+  background:var(--lavender);
+  color:var(--violet-deep);
+  border-color:var(--lavender);
+}
+
 /* ============================================
    PLATFORMS
    ============================================ */
@@ -704,11 +911,7 @@ a{ color:inherit; text-decoration:none; }
   align-items:center;
   padding:5rem 0;
   border-bottom:1px solid rgba(180,142,232,0.12);
-  opacity:0;
-  transform:translateY(40px);
-  transition:opacity .7s ease, transform .7s cubic-bezier(.16,1,.3,1);
 }
-.platform-view.in-view{ opacity:1; transform:translateY(0); }
 .platform-view:last-child{ border-bottom:none; }
 
 .platform-view__inner{
@@ -718,6 +921,38 @@ a{ color:inherit; text-decoration:none; }
   align-items:center;
   gap:clamp(1.5rem, 5vw, 4rem);
 }
+
+/* Index numeral and info panel slide in from opposite sides,
+   alternating per platform so consecutive sections don't repeat
+   the same move. */
+.platform-view__index,
+.platform-view__info{
+  opacity:0;
+  transition:opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1);
+}
+.platform-view__index{ transform:translateX(-60px) scale(0.92); transition-delay:.05s; }
+.platform-view__info{ transform:translateX(60px); transition-delay:.16s; }
+.platform-view:nth-of-type(even) .platform-view__index{ transform:translateX(60px) scale(0.92); }
+.platform-view:nth-of-type(even) .platform-view__info{ transform:translateX(-60px); }
+
+.platform-view.in-view .platform-view__index,
+.platform-view.in-view .platform-view__info{
+  opacity:1;
+  transform:translateX(0) scale(1);
+}
+
+/* Platform list items step in one after another. */
+.platform-view__item{
+  opacity:0;
+  transform:translateY(14px);
+  transition:opacity .55s ease, transform .55s cubic-bezier(.16,1,.3,1);
+}
+.platform-view.in-view .platform-view__item{ opacity:1; transform:translateY(0); }
+.platform-view__item:nth-child(1){ transition-delay:.32s; }
+.platform-view__item:nth-child(2){ transition-delay:.4s; }
+.platform-view__item:nth-child(3){ transition-delay:.48s; }
+.platform-view__item:nth-child(4){ transition-delay:.56s; }
+.platform-view__item:nth-child(n+5){ transition-delay:.62s; }
 
 .platform-view__index{
   font-family:var(--display);
@@ -818,14 +1053,18 @@ a{ color:inherit; text-decoration:none; }
   align-items:center;
   justify-content:center;
   border-bottom:1px solid var(--paper-line);
-  opacity:0;
-  transform:translateY(40px);
-  transition:opacity .7s ease, transform .7s cubic-bezier(.16,1,.3,1);
 }
-.project-view.in-view{ opacity:1; transform:translateY(0); }
 .project-view:last-child{ border-bottom:none; }
 
-.project-view__inner{ text-align:center; }
+.project-view__inner{
+  text-align:center;
+  opacity:0;
+  transform:translateX(-70px);
+  transition:opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1);
+}
+.project-view:nth-of-type(even) .project-view__inner{ transform:translateX(70px); }
+.project-view.in-view .project-view__inner{ opacity:1; transform:translateX(0); }
+
 .project-view__index{
   display:block;
   font-family:var(--display);
@@ -840,7 +1079,11 @@ a{ color:inherit; text-decoration:none; }
   font-family:var(--display);
   font-size:clamp(2.4rem, 6vw, 4.6rem);
   letter-spacing:0.01em;
+  opacity:0;
+  transform:translateY(16px);
+  transition:opacity .6s ease .18s, transform .6s cubic-bezier(.16,1,.3,1) .18s;
 }
+.project-view.in-view .project-view__name{ opacity:1; transform:translateY(0); }
 .project-view__tag{
   display:block;
   margin-top:1.3rem;
@@ -849,6 +1092,15 @@ a{ color:inherit; text-decoration:none; }
   letter-spacing:0.12em;
   text-transform:uppercase;
   color:#6f6180;
+  opacity:0;
+  transition:opacity .6s ease .3s;
+}
+.project-view.in-view .project-view__tag{ opacity:1; }
+
+@media (max-width:720px){
+  .project-view__inner,
+  .project-view:nth-of-type(even) .project-view__inner{ transform:translateY(36px); }
+  .project-view.in-view .project-view__inner{ transform:translateY(0); }
 }
 
 /* ============================================
@@ -906,9 +1158,21 @@ a{ color:inherit; text-decoration:none; }
   .candidate-view__focus{ align-items:center; }
   .candidate-view__focus li{ padding-left:0; }
   .candidate-view__focus li::before{ display:none; }
+  .candidate-view__photo,
+  .candidate-view:nth-of-type(even) .candidate-view__photo{ transform:translateY(-36px) scale(0.96); }
+  .candidate-view__info,
+  .candidate-view:nth-of-type(even) .candidate-view__info{ transform:translateY(36px); }
+  .candidate-view.in-view .candidate-view__photo,
+  .candidate-view.in-view .candidate-view__info{ transform:translateY(0) scale(1); }
 
   .platform-view__inner{ grid-template-columns:1fr; text-align:center; }
   .platform-view__index{ font-size:4.5rem; margin-bottom:0.5rem; }
+  .platform-view__index,
+  .platform-view:nth-of-type(even) .platform-view__index{ transform:translateY(-30px) scale(0.96); }
+  .platform-view__info,
+  .platform-view:nth-of-type(even) .platform-view__info{ transform:translateY(30px); }
+  .platform-view.in-view .platform-view__index,
+  .platform-view.in-view .platform-view__info{ transform:translateY(0) scale(1); }
   .platform-view__item{ flex-direction:column; justify-content:center; text-align:center; }
   .platform-view__item-text{ padding-left:0; max-width:none; }
   .platform-view__item-text::before{ display:none; }

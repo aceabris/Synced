@@ -124,7 +124,7 @@ function imgFallback(img, text){
 }
 
 function photoTag(c){
-  return `<img src="${c.photo}" alt="${c.name}" onerror="imgFallback(this, '${initials(c.name)}')">`;
+  return `<img src="${c.photo}" alt="${c.name}" loading="lazy" decoding="async" onload="this.classList.add('loaded')" onerror="imgFallback(this, '${initials(c.name)}')">`;
 }
 
 /* ============================================
@@ -186,7 +186,7 @@ function renderPlatforms(){
                 </span>` : ``}
                 ${it.image ? `
                 <button type="button" class="platform-view__item-photo platform-view__item-photo--img" data-photo="${it.image}" data-photo-back="${it.imageBack || ""}" data-photo-alt="${it.text}" aria-label="View photo: ${it.text}">
-                  <img src="${it.image}" alt="${it.text}">
+                  <img src="${it.image}" alt="${it.text}" loading="lazy" decoding="async">
                   <span class="platform-view__item-photo-hint">Tap to view</span>
                 </button>` : ``}
               </li>
@@ -373,21 +373,42 @@ function initSiteNavHighlight(){
 function initIntro(){
   const introScreen = document.getElementById("introScreen");
   const folderWrap = document.getElementById("folderWrap");
+  const introHint = introScreen.querySelector(".intro-hint");
+  const portalBurst = document.getElementById("portalBurst");
   document.body.style.overflow = "hidden";
 
   // iOS Safari won't apply :active styles at all unless a touch
   // listener exists somewhere on the page — this is that listener.
   document.body.addEventListener("touchstart", () => {}, { passive: true });
 
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const isTouch = window.matchMedia("(hover: none), (pointer: coarse)").matches;
   let entering = false;
 
+  // Iris-close the intro screen (clip-path collapses to a point,
+  // revealing the hero underneath) and kick off the ballot animation
+  // right as it starts closing.
   function closeIntro(){
     introScreen.classList.add("closing");
     initHeroBallot();
-    introScreen.addEventListener("transitionend", () => {
+    introScreen.addEventListener("transitionend", (e) => {
+      if (e.propertyName !== "clip-path") return;
       introScreen.style.display = "none";
     }, { once: true });
+  }
+
+  // Folder collapses into a point of light, a portal burst (rings +
+  // core flash + radiating streaks) fires from that same point, then
+  // the iris-close reveals the landing page.
+  function playPortalBurst(){
+    if (reduceMotion){
+      closeIntro();
+      return;
+    }
+    folderWrap.classList.add("collapsing");
+    if (introHint) introHint.classList.add("collapsing");
+    portalBurst.classList.add("burst");
+    setTimeout(closeIntro, 550);
   }
 
   function enterSite(){
@@ -397,11 +418,11 @@ function initIntro(){
 
     if (isTouch){
       // Hold the glow/sheet animation visible for a beat before
-      // the fade-out starts, since there's no hover preview on touch.
+      // the burst starts, since there's no hover preview on touch.
       folderWrap.classList.add("is-tapped");
-      setTimeout(closeIntro, 400);
+      setTimeout(playPortalBurst, 300);
     } else {
-      closeIntro();
+      playPortalBurst();
     }
   }
 
@@ -596,6 +617,53 @@ function initTilt(){
 }
 
 /* ============================================
+   SHARE BUTTON
+   Footer "Share this page" button copies the
+   page's own URL to the clipboard.
+   ============================================ */
+async function copyToClipboard(text){
+  if (navigator.clipboard && window.isSecureContext){
+    try {
+      await navigator.clipboard.writeText(text);
+      return true;
+    } catch { /* fall through to legacy path */ }
+  }
+  const tmp = document.createElement("textarea");
+  tmp.value = text;
+  tmp.style.position = "fixed";
+  tmp.style.opacity = "0";
+  document.body.appendChild(tmp);
+  tmp.focus();
+  tmp.select();
+  let ok = false;
+  try { ok = document.execCommand("copy"); } catch { ok = false; }
+  tmp.remove();
+  return ok;
+}
+
+function flashShareLabel(btn, text, duration = 1800){
+  const label = btn.querySelector(".share-btn__label");
+  const original = label.textContent;
+  label.textContent = text;
+  btn.classList.add("share-btn--done");
+  clearTimeout(btn._resetTimer);
+  btn._resetTimer = setTimeout(() => {
+    label.textContent = original;
+    btn.classList.remove("share-btn--done");
+  }, duration);
+}
+
+function initShareButtons(){
+  const pageShareBtn = document.getElementById("pageShareBtn");
+  if (pageShareBtn){
+    pageShareBtn.addEventListener("click", async () => {
+      const ok = await copyToClipboard(`${location.origin}${location.pathname}`);
+      flashShareLabel(pageShareBtn, ok ? "Link copied!" : "Couldn't copy");
+    });
+  }
+}
+
+/* ============================================
    SCROLL REVEAL (cards + pillars)
    ============================================ */
 function initScrollReveal(){
@@ -653,6 +721,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initModal();
   initPlatformPhotoModal();
   initTilt();
+  initShareButtons();
   initScrollReveal();
   initProgressRail();
 });

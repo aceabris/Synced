@@ -14,7 +14,7 @@ const CANDIDATES = [
   { num: 2, position: "2nd Year Rep",             name: "JYCEL LAROZA",             photo: "images/10-jycel-laroza.png",
     platform: "Strengthening collaboration and engagement among sophomore students.",
     focus: ["Gathering and presenting student concerns through regular consultations.", "Organizing academic and social activities that encourage participation."] },
-  { num: 3, position: "2nd Year Rep",             name: "ANGEL TABULAO",             photo: "images/10-jycel-laroza.png",
+  { num: 3, position: "1st Year Rep",             name: "ANGEL TABULAO",             photo: "images/09-angel-tabulao.png",
     platform: "Strengthening collaboration and engagement among sophomore students.",
     focus: ["Gathering and presenting student concerns through regular consultations.", "Organizing academic and social activities that encourage participation."] },
   { num: 4, position: "Escort",                   name: "JOHN MARK BOLANOS",        photo: "images/08-john-mark-bolanos.png",
@@ -29,11 +29,11 @@ const CANDIDATES = [
     platform: "Creating sustainable partnerships and responsible fundraising for the organization.",
     focus: ["Developing sponsorships and fundraising initiatives that benefit CCS students.", "Tracking project budgets and resource utilization to maximize every contribution."] },
 
-  { num: 7, position: "Auditor",                  name: "MICHELLE ANN ABELLANA",            photo: "images/05-jhuncel-nuevo.png",
+  { num: 7, position: "Auditor",                  name: "MICHELLE ANN ABELLANA",            photo: "images/05-michelle-abellana.png",
     platform: "Promoting accountability by ensuring every project and transaction is properly documented.",
     focus: ["Conducting regular audits of financial records and organizational activities.", "Publishing audit summaries and recommendations to strengthen transparency."] },
 
-  { num: 8, position: "Treasurer",                name: "ELNA JOY OGANIA",      photo: "images/04-lixcel-gleen-turpis.png",
+  { num: 8, position: "Treasurer",                name: "ELNA JOY OGANIA",      photo: "images/04-elna-joy-ogania.png",
     platform: "Managing organization funds with integrity, transparency, and accountability.",
     focus: ["Maintaining transparent and accountable financial management through clear and timely fund reports.", "Managing resources responsibly to maximize the impact of every organizational project."] },
 

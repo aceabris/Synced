@@ -15,7 +15,7 @@ const CANDIDATES = [
     platform: "Strengthening collaboration and engagement among sophomore students.",
     focus: ["Gathering and presenting student concerns through regular consultations.", "Organizing academic and social activities that encourage participation."] },
   { num: 3, position: "1st Year Rep",             name: "ANGEL TABULAO",             photo: "images/09-angel-tabulao.png",
-    platform: "Strengthening collaboration and engagement among sophomore students.",
+    platform: "Helping freshman students adjust to college life and build connections early on.",
     focus: ["Gathering and presenting student concerns through regular consultations.", "Organizing academic and social activities that encourage participation."] },
   { num: 4, position: "Escort",                   name: "JOHN MARK BOLANOS",        photo: "images/08-john-mark-bolanos.png",
     platform: "Representing CCS with confidence, leadership, and professionalism.",
